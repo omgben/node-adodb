@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Node-adodb : A Node.js JavaScript Client implementing the ADODB protocol ." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Node-adodb</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Nuintun/node-adodb">View on GitHub</a>
+
+          <h1 id="project_title">Node-adodb</h1>
+          <h2 id="project_tagline">A Node.js JavaScript Client implementing the ADODB protocol .</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Nuintun/node-adodb/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Nuintun/node-adodb/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="node-adodb-" class="anchor" href="#node-adodb-"><span class="octicon octicon-link"></span></a>node-adodb <a href="https://www.npmjs.org/package/node-adodb"><img src="https://badge.fury.io/js/node-adodb.png" alt="NPM version"></a>
+</h1>
+
+<blockquote>
+<p>A Node.js JavaScript Client implementing the ADODB protocol .</p>
+</blockquote>
+
+<h3>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h3>
+
+<pre><code>$ npm install node-adodb
+</code></pre>
+
+<h3>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction:</h3>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">ADODB</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-adodb'</span><span class="p">),</span>
+    <span class="nx">connection</span> <span class="o">=</span> <span class="nx">ADODB</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=node-adodb.mdb;'</span><span class="p">);</span>
+
+<span class="c1">// 全局调试开关，默认关闭</span>
+<span class="nx">ADODB</span><span class="p">.</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="c1">// 不带返回的查询</span>
+<span class="nx">connection</span>
+    <span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">'INSERT INTO Users(UserName, UserSex, UserAge) VALUES ("Newton", "Male", 25)'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'done'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Result:'</span><span class="p">.</span><span class="nx">green</span><span class="p">.</span><span class="nx">bold</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">'  '</span><span class="p">).</span><span class="nx">bold</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'fail'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="c1">// TODO something</span>
+    <span class="p">});</span>
+
+<span class="c1">// 带返回的查询</span>
+<span class="nx">connection</span>
+    <span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">'SELECT * FROM Users'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'done'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Result:'</span><span class="p">.</span><span class="nx">green</span><span class="p">.</span><span class="nx">bold</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">'  '</span><span class="p">).</span><span class="nx">bold</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'fail'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="c1">// TODO something</span>
+    <span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="extension" class="anchor" href="#extension"><span class="octicon octicon-link"></span></a>Extension:</h3>
+
+<blockquote>
+<p>node-adodb 理论支持 Windows 平台下所有支持 ADODB 连接的数据库，只需要更改数据库连接字符串即可实现操作！</p>
+</blockquote>
+
+<h3>
+<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes:</h3>
+
+<blockquote>
+<p>node-adodb 需要系统支持 Microsoft.Jet.OLEDB.4.0，对于 Windows XP SP2 以上系统默认支持，其它需要自己升级，具体操作过程请参考：
+<a href="http://support.microsoft.com/default.aspx?scid=kb;zh-CN;239114">如何获取 Microsoft Jet 4.0 数据库引擎的最新 Service Pack</a></p>
+</blockquote>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Node-adodb maintained by <a href="https://github.com/Nuintun">Nuintun</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
