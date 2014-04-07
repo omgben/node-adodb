@@ -444,3 +444,7 @@ Small Device Styles
 .fn-right {
   float:right;
 }
+
+.npm-version {
+  vertical-align: bottom;
+}
